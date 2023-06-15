@@ -1,0 +1,36 @@
+programme puissance4 c'est
+    constante J1 caractère: x;
+	constante J2 caractère: o;
+    constante vide caractère: . ;
+	procédure créationtableau (ent F case: chaine)// permet de créer le tableau avec les caractère []
+    procédure affichetableau(ent F grille: chaine)// permet d'afficher le tableau crée 
+    procédure affichenumcolonne(ent F num: entier)// permet d'afficher le numéro des colonnes afin que le joueur puisse choisir dans quelle colonne il joue 
+    procédure viderlagrille(sort F vid: chaîne)// permet de vider la grille à la fin de chaque partie pour en redemarrer une nouvelle
+    fonction validation (grille: ent F chaine; colonne: ent F entier; comf: sort F booléen)// valide si le coup du joueur est possible
+    procédure lâcher(grille: ent/sort chaine; colonne:ent entier; jeton: ent caractère)// permet de lacher le pions pour imiter la gravité dans le puissance 4 normal
+    fonction pionsaligné(grille:ent F chaine; ligne: ent F entier; colonne: ent F entier) // detecte si 4 pions son aligné ou non
+    procédure résultat( res: ent F chaine);// affiche les résultat
+
+début
+    écrireEcran("La partie va commencer ");//Annonce du commencement
+    écrireEcran("Le joueur qui commnece aura les jetons x le second joueur aura les jetons o ");// Annonce du commencement*
+    créationtableau(ent F case entier);
+    entier n;
+
+    tant que (J1 != 4 | J2 != 4) faire
+        affichetableau(ent F grille: chaine);
+        affichenumcolonne(ent F num: entier)
+        écrireEcran("choisissez la colonne entre 1 et 7 ou vous voulez mettre votre jeton :");
+        lireClavier("numéro de la colonne", n);
+            si (validation (grille: ent F chaine; colonne: ent F entier; comf: sort F booléen) == 1) alors
+                lâcher(grille: ent/sort chaine; colonne:ent entier; jeton: ent caractère)
+            sinon 
+                écrireEcran("Cette colonne n'est pas jouable ");
+                écrireEcran("choisissez la colonne entre 1 et 7 ou vous voulez mettre votre jeton :");// on redemande une colonne ou il est possible de metre un jetons
+                lireClavier("numéro de la colonne", n);
+            fin si
+        pionsaligné(grille:ent F chaine; ligne: ent F entier; colonne: ent F entier)//verifier si victoire
+    finfaire
+    resultat (res: ent F chaine);
+    écrireEcran("La partie est fini victoire de", res" en colonnes", n);// annonce du vainqueur ainsi que de l'emplacement du jetons qui fait le puissance 4
+fin
